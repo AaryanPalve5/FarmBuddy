@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white font-sans antialiased">
+    <div class="max-w-xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-bold text-green-600 mb-8">Prediction Result</h1>
+        <p class="text-lg text-gray-800">{{ result }}</p>
+        <a href="{{ url_for('farmbuddy') }}" class="block mt-8 text-green-600 hover:text-green-700 text-sm">Go back</a>
+    </div>
+</body>
+</html>

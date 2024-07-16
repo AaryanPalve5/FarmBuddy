@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FarmBuddy - Crop Suitability Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white font-sans antialiased">
+    <div class="max-w-2xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-bold text-green-600 mb-8">FarmBuddy - Crop Suitability Predictor</h1>
+        <form action="{{ url_for('predict') }}" method="post" class="space-y-4">
+            <div>
+                <label for="district" class="block text-sm font-medium text-gray-700">District:</label>
+                <select id="district" name="district" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    <option value="">Select District</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Nagpur">Nagpur</option>
+                    <option value="Nashik">Nashik</option>
+                    <option value="Solapur">Solapur</option>
+                    <option value="Ahmednagar">Ahmednagar</option>
+                    <option value="Akola">Akola</option>
+                    <option value="Amravati">Amravati</option>
+                    <option value="Aurangabad">Aurangabad</option>
+                    <option value="Beed">Beed</option>
+                    <option value="Bhandara">Bhandara</option>
+                    <option value="Buldhana">Buldhana</option>
+                    <option value="Chandrapur">Chandrapur</option>
+                    <option value="Dhule">Dhule</option>
+                    <option value="Gadchiroli">Gadchiroli</option>
+                    <option value="Gondia">Gondia</option>
+                    <option value="Hingoli">Hingoli</option>
+                    <option value="Jalgaon">Jalgaon</option>
+                    <option value="Jalna">Jalna</option>
+                    <option value="Kolhapur">Kolhapur</option>
+                    <option value="Latur">Latur</option>
+                </select>
+            </div>
+            <div>
+                <label for="crop" class="block text-sm font-medium text-gray-700">Crop:</label>
+                <select id="crop" name="crop" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    <option value="">Select Crop</option>
+                    <option value="Wheat">Wheat</option>
+                    <option value="Jowar">Jowar</option>
+                    <option value="Bajra">Bajra</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Cotton">Cotton</option>
+                    <option value="Sugarcane">Sugarcane</option>
+                    <option value="Grapes">Grapes</option>
+                    <option value="Soybean">Soybean</option>
+                    <option value="Green Gram">Green Gram</option>
+                    <option value="Turmeric">Turmeric</option>
+                    <option value="Banana">Banana</option>
+                    <option value="Mango">Mango</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Pomegranate">Pomegranate</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Guava">Guava</option>
+                    <option value="Chikoo">Chikoo</option>
+                    <option value="Pineapple">Pineapple</option>
+                    <option value="Watermelon">Watermelon</option>
+                    <option value="Muskmelon">Muskmelon</option>
+                    <option value="Onion">Onion</option>
+                    <option value="Potato">Potato</option>
+                    <option value="Tomato">Tomato</option>
+                    <option value="Brinjal">Brinjal</option>
+                    <option value="Cauliflower">Cauliflower</option>
+                    <option value="Broccoli">Broccoli</option>
+                    <option value="Cabbage">Cabbage</option>
+                    <option value="Spinach">Spinach</option>
+                    <option value="Methi">Methi</option>
+                    <option value="Fenugreek">Fenugreek</option>
+                    <option value="Coriander">Coriander</option>
+                    <option value="Mint">Mint</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    Predict
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
