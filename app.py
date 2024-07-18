@@ -25,7 +25,8 @@ def decompress_pickle(file):
     with bz2.BZ2File(file, 'rb') as data:
         return pickle.load(data)
 
-crop_recommendation_model = decompress_pickle('models\\crop_recommendation_model.pbz2')
+# Adjust the path to match your deployment environment
+crop_recommendation_model = decompress_pickle('models/crop_recommendation_model.pbz2')
 
 # Load dataset and fit label encoder for crop recommendation
 df = pd.read_csv("Dataset/Crop_recommendation.csv", encoding='utf-8')
