@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-4">Crop Recommendation Home</h1>
+        <p class="mb-4">Enter parameters below to get crop recommendations:</p>
+        <form action="/crop_parameters" method="POST" class="max-w-md bg-white p-6 rounded-lg shadow-lg">
+            <div class="mb-4">
+                <label for="N" class="block text-sm font-medium text-gray-700">Nitrogen (%)</label>
+                <input type="text" id="N" name="N" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="P" class="block text-sm font-medium text-gray-700">Phosphorus (%)</label>
+                <input type="text" id="P" name="P" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="K" class="block text-sm font-medium text-gray-700">Potassium (%)</label>
+                <input type="text" id="K" name="K" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="temperature" class="block text-sm font-medium text-gray-700">Temperature (°C)</label>
+                <input type="text" id="temperature" name="temperature" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="humidity" class="block text-sm font-medium text-gray-700">Humidity (%)</label>
+                <input type="text" id="humidity" name="humidity" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="ph" class="block text-sm font-medium text-gray-700">pH Level</label>
+                <input type="text" id="ph" name="ph" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div class="mb-4">
+                <label for="rainfall" class="block text-sm font-medium text-gray-700">Rainfall (mm)</label>
+                <input type="text" id="rainfall" name="rainfall" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <button type="submit" class="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">Get Recommendations</button>
+        </form>
+    </div>
+</body>
+</html>

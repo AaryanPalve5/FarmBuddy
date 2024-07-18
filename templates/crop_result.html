@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-4">Crop Recommendation Result</h1>
+        <p class="mb-4">Recommended crop based on provided parameters:</p>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <p class="text-xl font-bold mb-2">{{ crop }}</p>
+        </div>
+        <a href="/crop_index" class="mt-4 bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">Back to Crop Recommendation Index</a>
+    </div>
+</body>
+</html>
