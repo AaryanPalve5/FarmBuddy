@@ -4,14 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farm Buddy</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .btn-custom {
+            font-family: 'Roboto', sans-serif;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            padding: 12px 24px;
+            font-size: 1.125rem;
+            border-radius: 8px;
+            background-color: #27ae60;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .btn-custom:hover {
+            transform: translateY(-4px);
+            background-color: #2ecc71;
+        }
+        .logo {
+            width: 60px;
+            height: auto;
+            border: 3px solid #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .navbar-custom {
+            background-color: #1b5e20;
+        }
+        .navbar-custom .navbar-nav .nav-link {
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+        }
+        .navbar-custom .navbar-nav .nav-link:hover {
+            background-color: #2c6b2f;
+        }
+        .mobile-menu {
+            background-color: #1b5e20;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 15px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .mobile-menu a:hover {
+            background-color: #2c6b2f;
+        }
+        .close-menu {
+            display: block;
+            padding: 15px;
+            text-align: right;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-menu:hover {
+            color: #ddd;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
-    <div class="text-center">
-        <h1 class="text-green-500 text-4xl font-bold mb-6">Welcome to Farm Buddy</h1>
-        <p class="text-gray-700 text-lg mb-8">A tool for farmer in every step of the way</p>
-        <a href="{{ url_for('farmbuddy') }}" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg inline-block transition duration-300">Go to Farm Buddy</a>
-        <a href="{{ url_for('crop_home') }}" class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-lg inline-block mt-4 transition duration-300">Go to Crop Recommendation</a>
-    </div>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Header with Navigation Bar -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-custom">
+            <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Farm Buddy Logo" class="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md-hidden fixed inset-0 bg-green-900 bg-opacity-90 z-50 d-none">
+            <div class="close-menu" id="close-menu">&times;</div>
+            <nav class="mobile-menu mt-10">
+                <a href="#" class="block text-white hover:bg-green-800">Home</a>
+                <a href="#about" class="block text-white hover:bg-green-800">About</a>
+                <a href="#services" class="block text-white hover:bg-green-800">Services</a>
+                <a href="#" class="block text-white hover:bg-green-800">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mt-4">
+        <!-- Welcome Section -->
+        <div class="card text-center mx-auto mb-4" style="max-width: 600px;">
+            <div class="card-body">
+                <h1 class="card-title text-success mb-4">Welcome to Farm Buddy</h1>
+                <p class="card-text text-secondary mb-4">A tool for farmers in every step of the way.</p>
+                <a href="#services" class="btn-custom">Discover Our Services</a>
+            </div>
+        </div>
+
+        <!-- About and Choose Us Section -->
+        <div id="about" class="container bg-white py-4 mt-4">
+            <h2 class="text-success text-center mb-4">Why Choose Us?</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Tailored Recommendations</h5>
+                            <p class="card-text">We provide personalized crop and fertilizer recommendations based on your specific location and farming conditions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Advanced Technology</h5>
+                            <p class="card-text">Utilize cutting-edge machine learning algorithms for accurate and reliable guidance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Comprehensive Support</h5>
+                            <p class="card-text">Access tools for pest management, financial planning, and more, all in one platform.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">User-Friendly & Multilingual</h5>
+                            <p class="card-text">Enjoy an intuitive interface with downloadable plans available in multiple languages for ease of use.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div id="services" class="container bg-white py-4 mt-4 text-center">
+            <h2 class="text-success mb-4">Our Services</h2>
+            <a href="{{ url_for('farmbuddy') }}" class="btn-custom mb-2 d-inline-block">Go to Farm Buddy</a>
+            <a href="{{ url_for('crop_home') }}" class="btn-custom d-inline-block">Go to Crop Recommendation</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-white text-center py-3 mt-4">
+        <p class="mb-0">&copy; 2024 Farm Buddy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelector('.navbar-toggler').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('d-none');
+        });
+        document.getElementById('close-menu').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.add('d-none');
+        });
+    </script>
 </body>
 </html>
