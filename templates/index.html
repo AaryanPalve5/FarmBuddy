@@ -74,6 +74,40 @@
         .close-menu:hover {
             color: #ddd;
         }
+        /* Styles for the Welcome Section */
+        .welcome-section {
+            position: relative;
+            height: 100vh; /* Full height of viewport */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid #27ae60; /* Small border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better separation */
+            background-image: url('static/images/bg.jpg');
+            background-size: cover; /* Cover the full width and height */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+        }
+        .welcome-section .text-overlay {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 800px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .welcome-section .text-overlay h1 {
+            margin-bottom: 1rem;
+            font-size: 4rem; /* Larger font size */
+            color: #ffffff; /* White color */
+        }
+        .welcome-section .text-overlay p {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem; /* Larger font size */
+            color: #ffffff; /* White color */
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -81,7 +115,7 @@
     <!-- Header with Navigation Bar -->
     <header>
         <nav class="navbar navbar-expand-md navbar-custom">
-            <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Farm Buddy Logo" class="logo"></a>
+            <a class="navbar-brand" href="#"><img src="static/images/logo.png" alt="Farm Buddy Logo" class="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -102,28 +136,18 @@
                 </ul>
             </div>
         </nav>
-        <div id="mobile-menu" class="md-hidden fixed inset-0 bg-green-900 bg-opacity-90 z-50 d-none">
-            <div class="close-menu" id="close-menu">&times;</div>
-            <nav class="mobile-menu mt-10">
-                <a href="#" class="block text-white hover:bg-green-800">Home</a>
-                <a href="#about" class="block text-white hover:bg-green-800">About</a>
-                <a href="#services" class="block text-white hover:bg-green-800">Services</a>
-                <a href="#" class="block text-white hover:bg-green-800">Contact</a>
-            </nav>
-        </div>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow container mt-4">
-        <!-- Welcome Section -->
-        <div class="card text-center mx-auto mb-4" style="max-width: 600px;">
-            <div class="card-body">
-                <h1 class="card-title text-success mb-4">Welcome to Farm Buddy</h1>
-                <p class="card-text text-secondary mb-4">A tool for farmers in every step of the way.</p>
-                <a href="#services" class="btn-custom">Discover Our Services</a>
+    <main>
+        <section class="welcome-section d-flex align-items-center justify-content-center text-center text-white">
+            <div class="text-overlay">
+                <h1>Welcome to Farm Buddy</h1>
+                <p>A tool for farmers in every step of the way.</p>
+                <a href="#services" class="btn btn-custom">Discover Our Services</a>
             </div>
-        </div>
-
+        </section>
+        
         <!-- About and Choose Us Section -->
         <div id="about" class="container bg-white py-4 mt-4">
             <h2 class="text-success text-center mb-4">Why Choose Us?</h2>
@@ -132,7 +156,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-success">Conducted Surveys</h5>
-                            <p class="card-text">We have conducted surveys and talked problems and understood there problems and built this project on our inference.</p>
+                            <p class="card-text">We have conducted surveys and talked problems and understood their issues and built this project on our inference.</p>
                         </div>
                     </div>
                 </div>
@@ -164,43 +188,30 @@
         </div>
 
         <!-- Services Section -->
-     
-
-
-        <!-- Services Section -->
-<div id="services" class="container bg-white py-4 mt-4 text-center">
-    <h2 class="text-success mb-4">Our Services</h2>
-    <div class="row">
-        <div class="col-12 col-md-4 mb-3">
-            <a href="{{ url_for('farmbuddy') }}" class="btn-custom btn-block">Go to Farm Buddy</a>
+        <div id="services" class="container bg-white py-4 mt-4 text-center">
+            <h2 class="text-success mb-4">Our Services</h2>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-3">
+                    <a href="{{ url_for('farmbuddy') }}" class="btn-custom btn-block">Go to Farm Buddy</a>
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                    <a href="{{ url_for('crop_home') }}" class="btn-custom btn-block">Go to Crop Recommendation</a>
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                    <a href="{{ url_for('finance') }}" class="btn-custom btn-block">Finance Calc</a>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-md-4 mb-3">
-            <a href="{{ url_for('crop_home') }}" class="btn-custom btn-block">Go to Crop Recommendation</a>
-        </div>
-        <div class="col-12 col-md-4 mb-3">
-            <a href="{{ url_for('finance') }}" class="btn-custom btn-block">Finance Calc</a>
-        </div>
-    </div>
-</div>
-
     </main>
 
     <!-- Footer -->
-    <footer class="footer bg-white text-center py-3 mt-4">
-        <p class="mb-0">&copy; 2024 Farm Buddy. All Rights Reserved.</p>
+    <footer class="bg-success text-white text-center py-3 mt-auto">
+        <p>&copy; 2024 Farm Buddy. All rights reserved.</p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.querySelector('.navbar-toggler').addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.toggle('d-none');
-        });
-        document.getElementById('close-menu').addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.add('d-none');
-        });
-    </script>
 </body>
 </html>

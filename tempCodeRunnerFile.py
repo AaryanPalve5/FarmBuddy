@@ -63,6 +63,10 @@ def farmbuddy():
 def aboutus():
     return render_template('aboutus.html')
 
+@app.route('/finance')
+def finance():
+    return render_template('finance.html')
+
 @app.route('/predict', methods=['POST'])
 def predict():
     district = request.form.get('district').strip().lower()
@@ -120,6 +124,11 @@ def crop_home():
 @app.route('/crop_index')
 def crop_index():
     return render_template('crop_index.html')
+
+
+@app.route('/ourservice')
+def ourservice():
+    return render_template('ourservice.html')
 
 @app.route('/crop_parameters', methods=['POST'])
 def crop_parameters():
