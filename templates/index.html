@@ -131,8 +131,8 @@
                 <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Tailored Recommendations</h5>
-                            <p class="card-text">We provide personalized crop and fertilizer recommendations based on your specific location and farming conditions.</p>
+                            <h5 class="card-title text-success">Conducted Surveys</h5>
+                            <p class="card-text">We have conducted surveys and talked problems and understood there problems and built this project on our inference.</p>
                         </div>
                     </div>
                 </div>
@@ -164,11 +164,25 @@
         </div>
 
         <!-- Services Section -->
-        <div id="services" class="container bg-white py-4 mt-4 text-center">
-            <h2 class="text-success mb-4">Our Services</h2>
-            <a href="{{ url_for('farmbuddy') }}" class="btn-custom mb-2 d-inline-block">Go to Farm Buddy</a>
-            <a href="{{ url_for('crop_home') }}" class="btn-custom d-inline-block">Go to Crop Recommendation</a>
+     
+
+
+        <!-- Services Section -->
+<div id="services" class="container bg-white py-4 mt-4 text-center">
+    <h2 class="text-success mb-4">Our Services</h2>
+    <div class="row">
+        <div class="col-12 col-md-4 mb-3">
+            <a href="{{ url_for('farmbuddy') }}" class="btn-custom btn-block">Go to Farm Buddy</a>
         </div>
+        <div class="col-12 col-md-4 mb-3">
+            <a href="{{ url_for('crop_home') }}" class="btn-custom btn-block">Go to Crop Recommendation</a>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <a href="{{ url_for('finance') }}" class="btn-custom btn-block">Finance Calc</a>
+        </div>
+    </div>
+</div>
+
     </main>
 
     <!-- Footer -->

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Calculation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e8f5e9; /* Light green background */
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-custom {
+            background-color: #4caf50;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #45a049;
+        }
+        .btn-home {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn-home:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Finance Calculation for Crops</h2>
+        <form id="financeForm">
+            <div class="form-group">
+                <label for="crop">Crop Name:</label>
+                <select class="form-control" id="crop" required>
+                    <option value="">Select a crop</option>
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="landArea">Land Area (in acres):</label>
+                <input type="number" class="form-control" id="landArea" placeholder="Enter land area" required>
+            </div>
+            <div class="form-group">
+                <label for="seedCost">Cost of Seeds/Saplings per Acre:</label>
+                <input type="number" class="form-control" id="seedCost" placeholder="Enter seed cost" required>
+            </div>
+            <div class="form-group">
+                <label for="otherCosts">Other Miscellaneous Costs per Acre:</label>
+                <input type="number" class="form-control" id="otherCosts" placeholder="Enter other costs" required>
+            </div>
+            <div class="form-group">
+                <label for="conversionRate">USD to INR Conversion Rate:</label>
+                <input type="number" class="form-control" id="conversionRate" placeholder="Enter conversion rate" value="85" required>
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Calculate</button>
+        </form>
+        <div id="result" class="mt-4"></div>
+        <button class="btn-home" onclick="window.location.href = '/'">Go to Home</button>
+    </div>
+    <script>
+        const cropData = {
+            "Wheat": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Jowar": {'growth_period': 4, 'water_cost': 180, 'electricity_cost': 90, 'fertilizer_cost': 140, 'labor_cost': 45},
+            "Bajra": {'growth_period': 4, 'water_cost': 180, 'electricity_cost': 90, 'fertilizer_cost': 140, 'labor_cost': 45},
+            "Rice": {'growth_period': 5, 'water_cost': 220, 'electricity_cost': 110, 'fertilizer_cost': 160, 'labor_cost': 55},
+            "Cotton": {'growth_period': 6, 'water_cost': 250, 'electricity_cost': 130, 'fertilizer_cost': 170, 'labor_cost': 60},
+            "Sugarcane": {'growth_period': 12, 'water_cost': 500, 'electricity_cost': 300, 'fertilizer_cost': 200, 'labor_cost': 100},
+            "Grapes": {'growth_period': 8, 'water_cost': 280, 'electricity_cost': 140, 'fertilizer_cost': 180, 'labor_cost': 70},
+            "Soybean": {'growth_period': 5, 'water_cost': 220, 'electricity_cost': 110, 'fertilizer_cost': 160, 'labor_cost': 55},
+            "Green Gram": {'growth_period': 4, 'water_cost': 180, 'electricity_cost': 90, 'fertilizer_cost': 140, 'labor_cost': 45},
+            "Turmeric": {'growth_period': 9, 'water_cost': 300, 'electricity_cost': 150, 'fertilizer_cost': 190, 'labor_cost': 80},
+            "Banana": {'growth_period': 10, 'water_cost': 350, 'electricity_cost': 200, 'fertilizer_cost': 210, 'labor_cost': 90},
+            "Mango": {'growth_period': 6, 'water_cost': 250, 'electricity_cost': 130, 'fertilizer_cost': 170, 'labor_cost': 60},
+            "Orange": {'growth_period': 6, 'water_cost': 250, 'electricity_cost': 130, 'fertilizer_cost': 170, 'labor_cost': 60},
+            "Pomegranate": {'growth_period': 6, 'water_cost': 250, 'electricity_cost': 130, 'fertilizer_cost': 170, 'labor_cost': 60},
+            "Apple": {'growth_period': 6, 'water_cost': 250, 'electricity_cost': 130, 'fertilizer_cost': 170, 'labor_cost': 60},
+            "Guava": {'growth_period': 6, 'water_cost': 250, 'electricity_cost': 130, 'fertilizer_cost': 170, 'labor_cost': 60},
+            "Chikoo": {'growth_period': 6, 'water_cost': 250, 'electricity_cost': 130, 'fertilizer_cost': 170, 'labor_cost': 60},
+            "Pineapple": {'growth_period': 6, 'water_cost': 250, 'electricity_cost': 130, 'fertilizer_cost': 170, 'labor_cost': 60},
+            "Watermelon": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Muskmelon": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Onion": {'growth_period': 5, 'water_cost': 220, 'electricity_cost': 110, 'fertilizer_cost': 160, 'labor_cost': 55},
+            "Potato": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Tomato": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Brinjal": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Cauliflower": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Broccoli": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Cabbage": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Spinach": {'growth_period': 2, 'water_cost': 140, 'electricity_cost': 70, 'fertilizer_cost': 120, 'labor_cost': 30},
+            "Methi": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Fenugreek": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Okra": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Pumpkin": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Bitter Gourd": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Bottle Gourd": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Ridge Gourd": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Snake Gourd": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "French Bean": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Green Bean": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Kidney Bean": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Lentil": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Pea": {'growth_period': 3, 'water_cost': 160, 'electricity_cost': 80, 'fertilizer_cost': 130, 'labor_cost': 40},
+            "Chickpea": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+            "Pulses": {'growth_period': 4, 'water_cost': 200, 'electricity_cost': 100, 'fertilizer_cost': 150, 'labor_cost': 50},
+        };
+
+        const cropSelect = document.getElementById('crop');
+        for (const crop in cropData) {
+            const option = document.createElement('option');
+            option.value = crop;
+            option.textContent = crop;
+            cropSelect.appendChild(option);
+        }
+
+        document.getElementById('financeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const crop = document.getElementById('crop').value;
+            const landArea = parseFloat(document.getElementById('landArea').value);
+            const seedCost = parseFloat(document.getElementById('seedCost').value);
+            const otherCosts = parseFloat(document.getElementById('otherCosts').value);
+            const conversionRate = parseFloat(document.getElementById('conversionRate').value);
+
+            const cropInfo = cropData[crop];
+            if (!cropInfo) {
+                document.getElementById('result').innerHTML = `<div class="alert alert-danger">Invalid crop name. Please check and try again.</div>`;
+                return;
+            }
+
+            const totalWaterCost = cropInfo.water_cost * cropInfo.growth_period * landArea;
+            const totalElectricityCost = cropInfo.electricity_cost * cropInfo.growth_period * landArea;
+            const totalFertilizerCost = cropInfo.fertilizer_cost * cropInfo.growth_period * landArea;
+            const totalLaborCost = cropInfo.labor_cost * cropInfo.growth_period * landArea;
+            const totalSeedCost = seedCost * landArea;
+            const totalMiscCost = otherCosts * landArea;
+
+            const totalCostINR = totalWaterCost + totalElectricityCost + totalFertilizerCost + totalLaborCost + totalSeedCost + totalMiscCost;
+            const totalCostUSD = totalCostINR / conversionRate;
+
+            document.getElementById('result').innerHTML = `
+                <h4 class="text-center">Results for ${crop}</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">Total Water Cost: ₹${totalWaterCost.toFixed(2)}</li>
+                    <li class="list-group-item">Total Electricity Cost: ₹${totalElectricityCost.toFixed(2)}</li>
+                    <li class="list-group-item">Total Fertilizer Cost: ₹${totalFertilizerCost.toFixed(2)}</li>
+                    <li class="list-group-item">Total Labor Cost: ₹${totalLaborCost.toFixed(2)}</li>
+                    <li class="list-group-item">Total Seed Cost: ₹${totalSeedCost.toFixed(2)}</li>
+                    <li class="list-group-item">Total Miscellaneous Cost: ₹${totalMiscCost.toFixed(2)}</li>
+                    <li class="list-group-item">Total Cost in INR: ₹${totalCostINR.toFixed(2)}</li>
+                    <li class="list-group-item">Total Cost in USD: $${totalCostUSD.toFixed(2)}</li>
+                </ul>
+            `;
+        });
+    </script>
+</body>
+</html>

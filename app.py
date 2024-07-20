@@ -63,6 +63,10 @@ def farmbuddy():
 def aboutus():
     return render_template('aboutus.html')
 
+@app.route('/finance')
+def finance():
+    return render_template('finance.html')
+
 @app.route('/predict', methods=['POST'])
 def predict():
     district = request.form.get('district').strip().lower()
